@@ -14,11 +14,11 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function not(a, b) {
+export function not(a, b) {
     return a.filter((value) => b.indexOf(value) === -1);
 }
 
-function intersection(a, b) {
+export function intersection(a, b) {
     return a.filter((value) => b.indexOf(value) !== -1);
 }
 

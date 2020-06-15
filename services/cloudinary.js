@@ -24,6 +24,10 @@ class CloudinaryService{
         })
         return await response.json()
     }
+    
+    getUrlImage(image) {
+        return `https://res.cloudinary.com/${config.cloudName}/image/upload/c_scale,dl_2,f_webp,h_100,r_0/v${image.version}/${image.public_id}.${image.format}`
+    }
 }
 
 export default new CloudinaryService();
