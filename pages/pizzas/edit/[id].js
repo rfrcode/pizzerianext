@@ -6,7 +6,6 @@ import TransferList, { not } from '../../../components/transferlist'
 import PizzaService from '../../../services/pizzas'
 import IngredientService from '../../../services/ingredients'
 import { makeStyles } from '@material-ui/core/styles';
-
 import Input from '../../../components/input'
 import Button from '@material-ui/core/Button';
 import LinearProgress from '@material-ui/core/LinearProgress';
@@ -73,7 +72,6 @@ export default function Edit({ id }) {
         finally {
             sendState(false);
         }
-
     }
     const transferProps = {
         left,
@@ -84,27 +82,26 @@ export default function Edit({ id }) {
         setRight
     }
     function renderLayout() {
-        console.log(pizza)
         if (!pizza) return null;
         return (
             <Layout>
-            <form className={classes.container} onSubmit={handleSubmit(onSubmit)} noValidate>
-                <Input label="Nombre *" type="text" name="name" validators={validators} value={pizza.name} />
-                <TransferList {...transferProps} />
-                <DropzoneArea
-                    initialFiles={[cloudinaryService.getUrlImage(pizza.image)]}
-                    acceptedFiles={['image/*']}
-                    dropzoneText={"Arrastrar imagen o hacer click"}
-                    filesLimit={1}
-                    onChange={uploadImage}
-                />
-                <div className="button-container">
-                    <Button type="submit" variant="contained" color="primary">
-                        Guardar
+                <form className={classes.container} onSubmit={handleSubmit(onSubmit)} noValidate>
+                    <Input label="Nombre *" type="text" name="name" validators={validators} value={pizza.name} />
+                    <TransferList {...transferProps} />
+                    <DropzoneArea
+                        initialFiles={[cloudinaryService.getUrlImage(pizza.image)]}
+                        acceptedFiles={['image/*']}
+                        dropzoneText={"Arrastrar imagen o hacer click"}
+                        filesLimit={1}
+                        onChange={uploadImage}
+                    />
+                    <div className="button-container">
+                        <Button type="submit" variant="contained" color="primary">
+                            Guardar
                     </Button>
-                </div>
-            </form>
-        </Layout>
+                    </div>
+                </form>
+            </Layout>
         )
 
     }
@@ -123,7 +120,6 @@ export default function Edit({ id }) {
         }
         setImage(null)
     }
-
 
     return (
         <>
