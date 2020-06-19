@@ -13,6 +13,9 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import { DropzoneArea } from 'material-ui-dropzone'
 import { makeStyles } from '@material-ui/core/styles';
 import cloudinaryService from '../../services/cloudinary'
+import Router from 'next/router'
+import { set } from 'idb-keyval';
+
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -53,12 +56,13 @@ export default function Add() {
         sendState(true);
         try {
             data = { ...data, ingredients: right, image: image}
-            await PizzaClient.add(data)
+            const pizza = await PizzaClient.add(data)
+            await set('pizza', pizza)
+            Router.push('/');
         }
         finally {
             sendState(false);
         }
-
     }
     const transferProps = {
         left,
@@ -74,7 +78,6 @@ export default function Add() {
         }
         return null;
     }
-
     async function uploadImage(ev) {
         if (ev[0]) {
             const image = await cloudinaryService.upload(ev[0])
@@ -82,6 +85,9 @@ export default function Add() {
             return;
         }
         setImage(null)
+    }
+    function handleBack() {
+        Router.back()
     }
     return (
         <>
@@ -102,6 +108,9 @@ export default function Add() {
                     <div className="button-container">
                         <Button type="submit" variant="contained" color="primary">
                             Guardar
+                        </Button>
+                        <Button variant="contained" onClick={handleBack} >
+                            Atrás
                         </Button>
                     </div>
                 </form>

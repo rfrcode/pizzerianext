@@ -30,6 +30,7 @@ class Session {
         const session = {
             name: dto.name,
             email: dto.email,
+            //role: dto.role,
             token: sign(dto, config.secret, { expiresIn: '1h' }),
             refreshToken: nanoid(),
         }

@@ -6,12 +6,18 @@ import services from '../../../app/middelwares/service'
 
 const connect = handler();
 
+function isValid(token) {
+    return true;
+}
 
 connect.post(services(PizzaService), async (req, res) => {
-    const pizza = await req.service.create(req.body);
-    res.status(201).json(pizza);
+    if (req.headers.authorization && isValid(req.headers.authorization)) {
+        const pizza = await req.service.create(req.body);
+        res.status(201).json(pizza);
+    }
+    else {
+        res.status(403).json('""')
+    }
 })
-
-
 
 export default connect;

@@ -7,22 +7,23 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "Launch Next.js",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": [
+                "run-script",
+                "debug"
+            ],
+            "port": 9229,
+            "sourceMaps": true
+        },
+        {
+            "type": "node",
+            "request": "launch",
             "name": "Launch Program",
             "program": "${file}",
             "skipFiles": [
                 "<node_internals>/**"
             ]
-        },
-    
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "Launch Next.js",
-            "runtimeExecutable": "npm",
-            "runtimeArgs": ["run-script", "debug"],
-            "port": 9229,
-            "sourceMaps": true
-          }
-       
+        }
     ]
 }

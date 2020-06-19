@@ -7,6 +7,7 @@ class User {
         this.name = dto.name;
         this.password = dto.password;
         this.email = dto.email;
+        //this.role = dto.role;
 
     }
     static encryptPassWord(password) {

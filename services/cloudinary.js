@@ -1,8 +1,8 @@
 const config = require('./config')
 const url = `https://api.cloudinary.com/v1_1/${config.cloudName}/image/upload`
 
-class CloudinaryService {
-
+class CloudinaryService{
+    
     async upload(image) {
         const params = await this.getParams();
         const data = new FormData();
@@ -10,7 +10,7 @@ class CloudinaryService {
         data.append('api_key', config.apiKey);
         data.append('timestamp', params.timestamp);
         data.append('signature', params.key)
-        const response = await fetch(url,
+        const response = await fetch(url, 
             {
                 method: 'POST',
                 body: data
@@ -24,7 +24,7 @@ class CloudinaryService {
         })
         return await response.json()
     }
-
+    
     getUrlImage(image) {
         return `https://res.cloudinary.com/${config.cloudName}/image/upload/c_scale,dl_2,f_webp,h_100,r_0/v${image.version}/${image.public_id}.${image.format}`
     }

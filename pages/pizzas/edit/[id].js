@@ -6,6 +6,7 @@ import TransferList, { not } from '../../../components/transferlist'
 import PizzaService from '../../../services/pizzas'
 import IngredientService from '../../../services/ingredients'
 import { makeStyles } from '@material-ui/core/styles';
+
 import Input from '../../../components/input'
 import Button from '@material-ui/core/Button';
 import LinearProgress from '@material-ui/core/LinearProgress';
@@ -14,10 +15,12 @@ import cloudinaryService from '../../../services/cloudinary'
 import { useForm } from 'react-hook-form'
 import { PIZZAVALIDATOR } from '../../../app/validators/pizzavalidator'
 import { getBuilderProp } from '../../../app/application/validatorbuilder'
+import Router from 'next/router'
+
 
 export async function getServerSideProps(context) {
     return {
-        props: { id: context.params.id }, // will be passed to the page component as props
+        props: { id: context.params.id },
     }
 }
 const useStyles = makeStyles((theme) => ({
@@ -63,16 +66,26 @@ export default function Edit({ id }) {
         errors
     }
 
-    async function onSubmit(data) {
+    async function onSubmit(newData) {
         sendState(true);
         try {
-            data = { ...data, ingredients: right, image: image }
-            await PizzaClient.add(data)
+            const data = { ...newData, ingredients: right, image: pizza.image }
+            await PizzaService.update(pizza.id, data)
+            //Router.push('/');
+            handleBack()
+
+        } catch (error) {
+            throw new Error(400)
         }
         finally {
             sendState(false);
         }
     }
+
+    function handleBack() {
+        Router.back()
+    }
+
     const transferProps = {
         left,
         leftTitle: "Ingredientes",
@@ -82,14 +95,19 @@ export default function Edit({ id }) {
         setRight
     }
     function renderLayout() {
+        const images = []
         if (!pizza) return null;
+        if (pizza.image) {
+            images.push(cloudinaryService.getUrlImage(pizza.image))
+        }
+
         return (
             <Layout>
                 <form className={classes.container} onSubmit={handleSubmit(onSubmit)} noValidate>
                     <Input label="Nombre *" type="text" name="name" validators={validators} value={pizza.name} />
                     <TransferList {...transferProps} />
                     <DropzoneArea
-                        initialFiles={[cloudinaryService.getUrlImage(pizza.image)]}
+                        initialFiles={images}
                         acceptedFiles={['image/*']}
                         dropzoneText={"Arrastrar imagen o hacer click"}
                         filesLimit={1}
@@ -98,12 +116,14 @@ export default function Edit({ id }) {
                     <div className="button-container">
                         <Button type="submit" variant="contained" color="primary">
                             Guardar
-                    </Button>
+                        </Button>
+                        <Button variant="contained" onClick={handleBack} >
+                            Atrás
+                        </Button>
                     </div>
                 </form>
             </Layout>
         )
-
     }
     function linear() {
         if (send) {
@@ -115,11 +135,14 @@ export default function Edit({ id }) {
     async function uploadImage(ev) {
         if (ev[0]) {
             const image = await cloudinaryService.upload(ev[0])
+            pizza.image = image
             setImage(image)
             return;
         }
+        pizza.image = null;
         setImage(null)
     }
+
 
     return (
         <>

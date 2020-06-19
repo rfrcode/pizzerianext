@@ -26,7 +26,7 @@ function union(a, b) {
     return [...a, ...not(b, a)];
 }
 
-export default function TransferList({left, leftTitle, right, rightTitle, setLeft, setRight}) {
+export default function TransferList({ left, leftTitle, right, rightTitle, setLeft, setRight }) {
     const classes = useStyles();
     const [checked, setChecked] = useState([]);
 
