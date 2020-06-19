@@ -86,6 +86,16 @@ export default function Home({ pizzas, count, page, query }) {
     }
   };
 
+  function addButton() {
+    // TODO comprobar que el usuario existe y es admin
+    return (
+      <Link href='/pizzas/add'>
+        <Fab className={classes.fab} color="primary" aria-label="add">
+          <AddIcon />
+        </Fab>
+      </Link>)
+  }
+
   return (
     <>
       <Head>
@@ -94,11 +104,7 @@ export default function Home({ pizzas, count, page, query }) {
       <Layout className={classes.root}>
         <Pagination count={count} page={_page} onChange={handleChange} />
         {pizzas.map(p => <PizzaCard key={p.id || p.objectID} pizza={p} />)}
-        <Link href='/pizzas/add'>
-          <Fab className={classes.fab} color="primary" aria-label="add">
-            <AddIcon />
-          </Fab>
-        </Link>
+        {addButton()}
       </Layout>
     </>
   )

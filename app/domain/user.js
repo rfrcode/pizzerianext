@@ -8,7 +8,6 @@ class User {
         this.password = dto.password;
         this.email = dto.email;
         //this.role = dto.role;
-
     }
     static encryptPassWord(password) {
         return crypto.createHash('sha256').update(password).digest('base64');

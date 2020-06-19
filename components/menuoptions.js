@@ -10,11 +10,13 @@ const useStyles = makeStyles((theme) => ({
     toolbar: theme.mixins.toolbar,
 
 }));
+// TODO mostrar el menú ingredientes si el usuario está
+// logeado y si es admin
 export default function MenuOptions() {
-    const classes=useStyles();
-    const data=[
-        {name:'Pizzas',path:'/'},
-        {name:'Ingredientes', path:'/ingredients'}
+    const classes = useStyles();
+    const data = [
+        { name: 'Pizzas', path: '/' },
+        { name: 'Ingredientes', path: '/ingredients' }
     ]
     return (<div>
         <div className={classes.toolbar} />
@@ -23,7 +25,7 @@ export default function MenuOptions() {
             {data.map((obj, index) => (
                 <Link key={obj.name} href={obj.path}>
                     <ListItem button>
-                        <ListItemText primary={obj.name}/>
+                        <ListItemText primary={obj.name} />
                     </ListItem>
                 </Link>
             ))}
