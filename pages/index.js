@@ -1,15 +1,15 @@
-import Head from 'next/head'
-import Layout from '../components/layout'
 import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
-import Link from 'next/link'
 import { makeStyles } from '@material-ui/core/styles';
-const AlgoliaRepository = require('../app/infraestructure/algoliarepository')
-import PizzaCard from '../components/pizzacard'
-import { get, del } from 'idb-keyval';
-import { useEffect, useState } from 'react'
+import AddIcon from '@material-ui/icons/Add';
 import Pagination from '@material-ui/lab/Pagination';
-import Router from 'next/router'
+import { del, get } from 'idb-keyval';
+import Head from 'next/head';
+import Link from 'next/link';
+import Router from 'next/router';
+import { useEffect, useState } from 'react';
+import Layout from '../components/layout';
+import PizzaCard from '../components/pizzacard';
+const AlgoliaRepository = require('../app/infraestructure/algoliarepository')
 const LRU = require("lru-cache")
 
 // TODO pasar el texto del componente search a la pag index

@@ -1,10 +1,9 @@
-import { useState } from 'react'
-import Hidden from '@material-ui/core/Hidden'
 import Drawer from '@material-ui/core/Drawer'
-import MenuOptions from './menuoptions'
+import Hidden from '@material-ui/core/Hidden'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
-import  MenuContext from './menucontext'
 import { useContext } from 'react'
+import MenuContext from './menucontext'
+import MenuOptions from './menuoptions'
 export const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({

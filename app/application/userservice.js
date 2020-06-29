@@ -1,26 +1,25 @@
 const User = require('../domain/user')
 const UserRepository = require('../infraestructure/userrespository')
 const SessionService = require('../application/sessionservice')
-const {DuplicateError,NotExistsError} =require('../utils/customerrors')
-
+const { DuplicateError, NotExistsError } = require('../utils/customerrors')
 
 class UserService {
-    constructor(){
+    constructor() {
         this.userRepository = new UserRepository();
         this.sessionService = new SessionService();
     }
     async register(dto) {
         var user = await this.userRepository.get(dto.email);
-        if(user){
+        if (user) {
             throw new DuplicateError('User already exists')
         }
         user = await this.userRepository.add(User.create(dto));
         return await this._createSession(user);
     }
-    async _createSession(user){
+    async _createSession(user) {
         return await this.sessionService.create({
-            name:user.name,
-            email:user.email
+            name: user.name,
+            email: user.email
         })
     }
     async login(dto) {
@@ -30,11 +29,11 @@ class UserService {
         }
         return await this._createSession(user)
     }
-    async dispose(){
+    async dispose() {
         await this.userRepository.dispose();
         await this.sessionService.dispose();
     }
-    
+
 }
 
 module.exports = UserService

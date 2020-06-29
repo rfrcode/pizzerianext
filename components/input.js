@@ -21,8 +21,14 @@ export default function Input({ type, name, value, validators, label }) {
             <>
                 <TextField id={name} type={type} inputRef={register({
                     validate: validateFn
-                })} name={name} defaultValue={value} label={label}/>
+                })} name={name} defaultValue={value} label={label} />
             </>
         )
-    return (<TextField id={name} type={type} inputRef={register} name={name} defaultValue={value} label={label} />)
+    return (<TextField
+        id={name}
+        type={type}
+        inputRef={register}
+        name={name}
+        defaultValue={value}
+        label={label} />)
 }

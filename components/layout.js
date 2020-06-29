@@ -1,9 +1,9 @@
-import { makeStyles } from '@material-ui/core/styles'
-import { Divider } from '@material-ui/core';
-import AppBar from './appbar'
-import Menu from './menu'
-import MenuContext from './menucontext';
+import { makeStyles } from '@material-ui/core/styles';
 import { useState } from 'react';
+//import { Divider } from '@material-ui/core';
+import AppBar from './appbar';
+import Menu from './menu';
+import MenuContext from './menucontext';
 
 const useStyles = makeStyles((theme) => ({
     root: {

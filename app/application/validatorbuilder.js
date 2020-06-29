@@ -3,7 +3,7 @@ function getValidator({ fields, message, stack }) {
         fields,
         message,
         validators: stack.map(s => ({
-            sanitizer:s.sanitizer?true:false,
+            sanitizer: s.sanitizer ? true : false,
             validator: s.sanitizer || s.validator,
             args: s.options.filter(s => s)
         }))
@@ -17,10 +17,10 @@ function getBuilderProp(array) {
 function getBuilder(obj) {
     return Object.entries(obj)
         .filter(o => Array.isArray(o[1]))
-        .reduce((a,b) => {
-            a[b[0]]=getBuilderProp(b[1])
+        .reduce((a, b) => {
+            a[b[0]] = getBuilderProp(b[1])
             return a;
-        },{})
+        }, {})
 
 }
 export {

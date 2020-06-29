@@ -1,9 +1,9 @@
-import Head from 'next/head'
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { ServerStyleSheets } from '@material-ui/core/styles';
-import { useEffect } from 'react'
-import Router from 'next/router'
-import User from '../services/user'
+import Head from 'next/head';
+import Router from 'next/router';
+//import { ServerStyleSheets } from '@material-ui/core/styles';
+import { useEffect } from 'react';
+import User from '../services/user';
 
 function App({ Component, pageProps }) {
     //const sheets = new ServerStyleSheets();

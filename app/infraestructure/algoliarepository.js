@@ -1,5 +1,5 @@
-import config from '../config'
-import configClient from '../../services/config'
+import configClient from '../../services/config';
+import config from '../config';
 const algoliasearch = require("algoliasearch");
 
 class AlgoliaRepository {

@@ -37,6 +37,6 @@ class Session {
         session.expiresIn = this.getTokenData(session.token);
         return new Session(session)
     }
-
 }
+
 module.exports = Session;

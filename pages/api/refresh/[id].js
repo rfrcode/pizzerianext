@@ -1,6 +1,6 @@
-import handler from '../../../app/middelwares/nextconnect'
-import services from '../../../app/middelwares/service'
 import SessionService from '../../../app/application/sessionservice';
+import handler from '../../../app/middelwares/nextconnect';
+import services from '../../../app/middelwares/service';
 
 const connect = handler();
 connect.post(services(SessionService), async (req, res) => {

@@ -1,7 +1,7 @@
-import { get, del } from 'idb-keyval';
-import Router from 'next/router'
-import { useEffect, useState } from 'react'
-import Button from '@material-ui/core/Button'
+import Button from '@material-ui/core/Button';
+import { del, get } from 'idb-keyval';
+import Router from 'next/router';
+import { useEffect, useState } from 'react';
 export default function User() {
 
     const [user, setUser] = useState(null);
